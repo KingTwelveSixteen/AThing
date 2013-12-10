@@ -1,22 +1,29 @@
 package com.example.helloworld;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
-import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-public class CopyOfMainActivity extends Activity {
-
+public class CopyOfMainActivity extends Activity
+{
+	private int toastDuration = Toast.LENGTH_SHORT;
+	private Toast toast;
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.copy_of_activity_main);
+		
+		ImageView iv = new ImageView(this);
+		iv.setImageURI(Uri.parse(Environment.getExternalStorageDirectory() + "/Santa_Claus.png"));
+		
+		toast = Toast.makeText(getApplicationContext(),
+				"Santa has recieved your message!", toastDuration);
+		toast.show();
+		
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
 }
